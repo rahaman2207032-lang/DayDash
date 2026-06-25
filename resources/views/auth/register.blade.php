@@ -1,124 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.auth')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - DayDash</title>
+@section('title', 'Sign Up - DayDash')
 
-    <script src="https://cdn.tailwindcss.com"></script>
+@section('form_content')
+<h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
+    Welcome to
+    <span class="text-yellow-600">DayDash!</span>
+</h1>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4a90e2',
-                        accent: '#d9534f'
-                    }
-                }
-            }
-        }
-    </script>
-</head>
+<p class="text-gray-500 mt-3">
+    Sign up with your email and password to stay connected with us
+</p>
 
-<body class="min-h-screen">
+<form action="/register" method="POST" class="mt-8 space-y-4">
+    @csrf
 
-    <div class="max-w-7xl mx-auto min-h-screen px-8">
+    <input
+        type="text"
+        name="username"
+        placeholder="Enter your username"
+        required
+        class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
 
-        <!-- Top Navigation -->
-        <div class="flex justify-between items-center py-10">
+    <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+        class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
 
-            <h1 class="text-4xl font-extrabold text-yellow-600">
-                DayDash
-            </h1>
+    <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+        class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
 
-            <div class="flex items-center space-x-10">
-                <a href="/auth/login"
-                   class="text-lg font-medium text-gray-700 hover:text-yellow-600">
-                    Log In
-                </a>
+    <button
+        type="submit"
+        class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:opacity-90">
+        Create Account
+    </button>
+</form>
 
-                <a href="/auth/register"
-                   class="text-lg font-semibold text-yellow-600">
-                    Sign Up
-                </a>
-            </div>
-
-        </div>
-
-        <!-- Main Content -->
-        <div class="flex items-center justify-between">
-
-            <!-- Left Side -->
-            <div class="w-1/2 flex justify-center">
-                <img
-                    src="{{ asset('images/authh.jpg') }}"
-                    alt="Illustration"
-                >
-            </div>
-
-            <!-- Right Side -->
-            <div class="w-1/2 flex justify-center">
-
-                <div class="w-full max-w-md bg-white p-10">
-
-                    <h1 class="text-4xl font-extrabold text-gray-900">
-                        Welcome to
-                        <span class="text-yellow-600">DayDash!</span>
-                    </h1>
-
-                    <p class="text-gray-500 mt-3">
-                        Sign up with your email and password to stay connected with us
-                    </p>
-
-                    <form action="/register" method="POST" class="mt-8 space-y-4">
-                        @csrf
-
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Enter your username"
-                            required
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            required
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            required
-                            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-
-                        <button
-                            type="submit"
-                            class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:opacity-90">
-                            Create Account
-                        </button>
-                    </form>
-
-                    <p class="text-center text-sm text-gray-500 mt-6">
-                        Already Registered?
-                        <a href="/auth/login"
-                           class="text-primary font-semibold">
-                            Sign In
-                        </a>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</body>
-
-</html>
+<p class="text-center text-sm text-gray-500 mt-6">
+    Already Registered?
+    <a href="/auth/login"
+        class="text-primary font-semibold">
+        Sign In
+    </a>
+</p>
+@endsection
