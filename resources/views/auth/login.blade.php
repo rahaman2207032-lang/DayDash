@@ -12,7 +12,7 @@
     Sign in to your account to continue
 </p>
 
-<form action="/login" method="POST" class="mt-8 space-y-4">
+<form action="{{ route('login.store') }}" method="POST" class="mt-8 space-y-4">
     @csrf
 
     <input
@@ -20,7 +20,11 @@
         name="username"
         placeholder="Enter your username"
         required
+        value="{{ old('username') }}"
         class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+    @error('username')
+    <p class="text-sm text-red-600">{{ $message }}</p>
+    @enderror
 
     <input
         type="password"
@@ -28,6 +32,9 @@
         placeholder="Enter your password"
         required
         class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+    @error('password')
+    <p class="text-sm text-red-600">{{ $message }}</p>
+    @enderror
 
     <button
         type="submit"
