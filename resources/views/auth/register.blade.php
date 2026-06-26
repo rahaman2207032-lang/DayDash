@@ -12,7 +12,7 @@
     Sign up with your email and password to stay connected with us
 </p>
 
-<form action="/register" method="POST" class="mt-8 space-y-4">
+<form action="{{ route('register.store') }}" method="POST" class="mt-8 space-y-4">
     @csrf
 
     <input
@@ -20,14 +20,22 @@
         name="username"
         placeholder="Enter your username"
         required
+        value="{{ old('username') }}"
         class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+    @error('username')
+    <p class="text-sm text-red-600">{{ $message }}</p>
+    @enderror
 
     <input
         type="email"
         name="email"
         placeholder="Enter your email"
         required
+        value="{{ old('email') }}"
         class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+    @error('email')
+    <p class="text-sm text-red-600">{{ $message }}</p>
+    @enderror
 
     <input
         type="password"
@@ -35,6 +43,13 @@
         placeholder="Enter your password"
         required
         class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+    @error('password')
+    <p class="text-sm text-red-600">{{ $message }}</p>
+    @enderror
+
+    <p class="text-sm text-gray-500">
+        Use at least 8 characters with both letters and numbers.
+    </p>
 
     <button
         type="submit"
