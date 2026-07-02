@@ -18,3 +18,7 @@ Route::get('/auth/register', function () {
 
 Route::post('/login', LoginController::class)->name('login.store');
 Route::post('/register', RegisterController::class)->name('register.store');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
